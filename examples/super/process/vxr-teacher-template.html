@@ -34,7 +34,6 @@
   <script src="../../js/rotator.component.js"></script>
   <script src="../../js/input.component.js"></script>
   <script src="../../js/avatar-body.component.js"></script>
-  <script src="../../js/Feature-Schemas.js"></script>
   <script src="../../js/camera-output.js"></script>
   <script src="../../js/hand-attach.js"></script>
   <script src="../../js/attach-point.js"></script>
@@ -249,7 +248,7 @@
       <a-asset-item id="allistweezers" src="../../Models/gltf/Scisors.gltf"></a-asset-item>
       <a-asset-item id="cottonswab" src="../../Models/gltf/CottonSwabs01.gltf"></a-asset-item>
       <a-asset-item id="salinebottle" src="../../Models/gltf/ClorhexidinaBottle.gltf"></a-asset-item>
-      <a-asset-item id="alcoholgel" src="../../Models/gltf/AlcoholGel.gltf"></a-asset-item>
+      <!-- <a-asset-item id="alcoholgel" src="../../Models/gltf/AlcoholGel.gltf"></a-asset-item> -->
       <a-asset-item id="heparinseal" src="../../Models/gltf/HeparinSeal.gltf"></a-asset-item>
       <a-asset-item id="intracath" src="../../Models/gltf/Intracath.gltf"></a-asset-item>
 
@@ -472,12 +471,12 @@ t
         </a-entity>
       </template>
 
-      <template id="vxr-obj-template-alcoholgel">
+      <!-- <template id="vxr-obj-template-alcoholgel">
         <a-entity>
           <a-entity class="vxr-obj-alcoholgel vxr-interact" gltf-model="#alcoholgel" draggable grabbable
             toggle-physics position="-0.42543 0.40645 -0.00552"></a-entity>            
         </a-entity>
-      </template>
+      </template> -->
 
       <template id="vxr-obj-template-heparinseal">
         <a-entity>
@@ -807,10 +806,12 @@ t
       console.log("funca");
     }
   </script>
-  <!-- <script src="../../js/Feature-SpawnTemplate.js"></script> -->
+  <script src="../../js/Feature-SpawnTemplate.js"></script>
 
   <script src="../../js/Feature-SpawnObjects.js"></script>
   <script src="../../js/vxr-full-house.js"></script>
+
+  <script src="../../js/Feature-Schemas.js"></script>
 
 
 
