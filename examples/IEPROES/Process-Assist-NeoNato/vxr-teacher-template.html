@@ -81,7 +81,7 @@
       let baby = element = document.getElementById("baby")
       let Manta_Abierta = element = document.getElementById("e-Manta_Abierta")
       Manta_Abierta.setAttribute("visible","true")
-      baby.setAttribute('dynamic-body', 'mass:0.1')
+      baby.setAttribute('dynamic-body', 'mass:100.1;')
     }
 
   </script>
@@ -173,7 +173,7 @@
 
       <!-- Baby -->
       <a-asset-item id="e-staticbaby" rotation="0 0 -34.01593133912185" position="0.86197 0.25 -0.85745" grabbable="maxGrabbers: NaN" src="Models/Baby_Vacuna.gltf"></a-asset-item>
-      <a-asset-item id="Bebe_Bracelet" src="Models/Bebe_Bracelet.gltf"></a-asset-item>
+      <a-asset-item id="Bebe_Bracelet" src="Models/Bebe_Bracelete.gltf"></a-asset-item>
       <a-asset-item id="Cordon_Tijera" src="Models/Cordon_Tijera.gltf"></a-asset-item>
       <a-asset-item id="ClampClosed" src="Models/ClampClosed.gltf"></a-asset-item>
 
@@ -536,21 +536,21 @@
       <template id="vxr-obj-template-Clamp">
         <a-entity>
           <a-entity class="vxr-obj-Clamp vxr-interact" gltf-model="#Clamp" draggable="" grabbable
-            position="0.36767 0.40608 -0.42163" rotation="" dynamic-body>
+            position="-0.190 0.65608 -0.222" rotation="" dynamic-body>
           </a-entity>
         </a-entity>
       </template>
       
       <template id="vxr-obj-template-Baby_Vacuna">
         <a-entity>
-          <a-entity id="baby" class="vxr-obj-Baby_Vacuna vxr-interact" gltf-model="#Bebe_Bracelet" draggable grabbable
-            position="0.86197 0.250 -0.671" rotation="0 0 0"  ondragstart="setMass()">
+          <a-entity id="baby" class="vxr-obj-Baby_Vacuna" gltf-model="#Bebe_Bracelet" draggable grabbable
+            position="0.86197 0.250 -0.830" rotation="0 0 0"  ondragstart="setMass()">
             <a-entity id="manta" class="vxr-obj-Bebe_Bracelet-Manta" scale="0 0 0" gltf-model="#Manta_Mesa"></a-entity>
-            <a-entity id="e-ClampClosed" visible="false" class="vxr-obj-ClampClosed vxr-interact" gltf-model="#ClampClosed" position="0.007 0.059 -0.232" rotation="0 -37.275 0"></a-entity>
-            <a-entity id="e-CleftGauze_Close" class="vxr-obj-CleftGauze_Close  vxr-interact" gltf-model="#CleftGauze_Close" animation-mixer="clip:Abierto;clampWhenFinished: true;loop:once;startFrame:10000;timeScale:0.5" draggable="" grabbable
-            position="0.008 0.053 -0.227" rotation="0 0 0"  visible="false" ></a-entity>
+            <a-entity id="e-ClampClosed" visible="false" class="vxr-obj-ClampClosed vxr-interact" gltf-model="#ClampClosed" position="0.008 0.053 0.017" rotation="0 90 0"></a-entity>
+            <a-entity id="e-CleftGauze_Close" class="vxr-obj-CleftGauze_Close  vxr-interact" gltf-model="#CleftGauze_Close"   draggable="" grabbable
+            position="0.011 0.053 0.009" rotation="0 0 0"  visible="false" ></a-entity>
             <a-entity id="e-Manta_Abierta" class="vxr-obj-Manta_Abierta  vxr-interact" gltf-model="#Manta_Abierta"  draggable="" grabbable
-            position="0 -0.047 -0.283" rotation="0 0 0"  visible="false"  >
+            position="0.001 -0.034 -0.027" rotation="0 0 0" scale="1.1 1.1 1.1" visible="false"  >
             </a-entity>        
           </a-entity>
         </a-entity>
@@ -559,7 +559,7 @@
       <template id="vxr-obj-template-Cordon_Tijera">
         <a-entity>
           <a-entity id="e-Cordon_Tijera" class="vxr-obj-Cordon_Tijera vxr-interact" gltf-model="#Cordon_Tijera" draggable="" grabbable
-            position="0.87133 0.30734 -0.89683" visible="true">
+            position="0.873 0.306 -0.822" visible="true">
           </a-entity>
         </a-entity>
       </template>
@@ -666,15 +666,15 @@
       <template id="vxr-obj-template-KidneyTray">
         <a-entity>
           <a-entity id="e-KidneyTray" grabbable="maxGrabbers: NaN" scale="0.5 0.5 0.5" class="vxr-obj-KidneyTray vxr-interact" gltf-model="#KidneyTray" draggable="" grabbable
-            position="-0.11337 0.45861 -0.35059" rotation="" dynamic-body visible="true">
+            position="-0.11337 0.421 -0.35059" rotation="" static-body="shape:mesh" visible="true">
           </a-entity>
         </a-entity>
       </template>
 
       <template id="vxr-obj-template-Plantares">
         <a-entity>
-          <a-entity id="e-plantar" grabbable="maxGrabbers: NaN" dynamic-body="sphereRadius: NaN" class="vxr-obj-Plantares vxr-interact" gltf-model="#Plantares" draggable="" grabbable
-          position="-1.14041 0.41247 -0.08001" rotation="0 180 0" dynamic-body visible="true">
+          <a-entity id="e-plantar" grabbable="maxGrabbers: NaN"  class="vxr-obj-Plantares vxr-interact" gltf-model="#Plantares" draggable="" grabbable
+          position="-1.14041 0.41247 -0.08001" rotation="0 180 0" static-body visible="true">
           </a-entity>
           
         </a-entity>
@@ -756,7 +756,7 @@
         <a-entity>
           <a-entity id="id-e-staticbaby" grabbable="maxGrabbers: NaN"    grabbable class="vxr-obj-e-staticbaby  vxr-interact" 
           gltf-model="#e-staticbaby"  draggable="" grabbable
-          position="0.86197 0.25 -0.84368" rotation="0 0 0" visible="false"  >
+          position="0.862 0.188 -0.844" rotation="-15.213 0 0" visible="false"  >
           </a-entity>             
         </a-entity>
       </template>
@@ -814,7 +814,7 @@
     <a-entity class="gltf" gltf-model="#table" position="-0.13 1 -0.363" rotation="0 180 0"></a-entity>
     <a-box id="boxTable1" static-body="sphereRadius: NaN" opacity="0" static-body rotation="" position="-0.11878 0.21912 -0.37707" color="red"
       depth="0.6" height="0.1" width="1.1"></a-box>
-    <a-box id="tableBox4" static-body="sphereRadius: NaN" class="boxTable2" opacity="0" static-body rotation="" position="-0.10496 1.8508 -0.31224"
+    <a-box id="tableBox4" static-body="sphereRadius: NaN" class="boxTable2" opacity="0" static-body rotation="" position="-0.10496 1.8508 -0.346"
       color="red" depth="0.6" height="0.1" width="1.1"></a-box>
       <a-box id="tableBox5" static-body="sphereRadius: NaN" class="boxTable2" opacity="0" rotation="" position="-1.47065 1.86247 -0.36211"  depth="0.6" height="0.1" width="1.1" ></a-box>
      <a-box id="tableBox3" class="boxTable3" opacity="0" static-body rotation="0 90 0"
@@ -871,11 +871,11 @@
       </a-entity>
     </a-entity>
  
-    <a-sphere id="heparinsealCollider" static-body="sphereRadius: NaN" attach-point-v2="objClass:vxr-obj-heparinseal" static-body attach-intracath
+    <a-sphere id="heparinsealCollider" static-body="sphereRadius: NaN" attach-point-v2="objClass:vxr-obj-heparinseal" static-body 
       opacity="0"  position="0.85874 1.8186 -1.07677" geometry="radius: 0.05">
     </a-sphere>
     <a-sphere id="sphereOverScale" attach-point-v2="objClass:balance" static-body  
-    opacity="0"  position="-1.71723 2.08862 -0.30925" geometry="radius: 0.05">
+    opacity="0"  position="-1.71723 1.97 -0.309" geometry="radius: 0.05">
   </a-sphere>
  
     <a-box id="tableBox2" class="boxTable2" opacity="0" static-body="sphereRadius: NaN" rotation="" position="-1.64575 1.97348 -0.31224" color="red"
@@ -980,7 +980,7 @@
   <!-- <script src="../../js/Feature-SpawnTemplate.js"></script> -->
 
   <script src="../../js/Feature-SpawnObjects.js"></script>
-  <!-- <script src="../../js/vxr-full-house.js"></script> -->
+  <script src="../../js/vxr-full-house.js"></script>
 
 
 

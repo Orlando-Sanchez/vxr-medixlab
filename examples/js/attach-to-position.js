@@ -68,15 +68,22 @@ AFRAME.registerComponent('attach-point-v2', {
       if (classes.includes("vxr-obj-CleftGauze")) {
         let medicalClothe = document.getElementById("e-CleftGauze_Close")
         medicalClothe.setAttribute("visible", "true")
-        e.detail.body.el.remove();
         let baby = document.getElementById("baby")
-        baby.setAttribute("dynamic-body","mass:0")        
+        baby.setAttribute("dynamic-body","mass:0")  
+        e.detail.body.el.remove();
+      
       }
 
 
       if(data.objClass=="balance" && classes.includes("vxr-obj-Baby_Vacuna")){
         console.log("working, harder, make it better")
-        showCloth=true
+        console.log(this.el.getObject3D("mesh").getWorldPosition())
+
+        let colliderSphere= this.el.object3D;
+        e.detail.body.el.setAttribute("triggerlerp", colliderSphere.getWorldPosition)
+        console.log(this.el.getObject3D("mesh").getWorldPosition())
+        showCloth=true;
+        this.el.remove();
       }
       console.log("place: ", data.objClass, "clases", classes)
 

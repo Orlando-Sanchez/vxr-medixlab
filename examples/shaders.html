@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Shader Test</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+    <script>AFRAME.registerShader('makewaves', {
+      schema: {
+        color: {type: 'color', is: 'uniform', default: '#0D90EC'},
+        timeMsec: {type: 'time', is: 'uniform'},
+        uMap: {type: 'map', is: 'uniform'}
+      },
+    
+      vertexShader: `
+    #define SCALE 10.0
+    
+    varying vec2 vUv;
+    
+    uniform float timeMsec;  
+    
+    float calculateSurface(float x, float z) {
+        float uTime = timeMsec / 1000.0;
+        float y = 0.0;
+        y += (sin(x * 1.0 / SCALE + uTime * 1.0) + sin(x * 2.3 / SCALE + uTime * 1.5) + sin(x * 3.3 / SCALE + uTime * 0.4)) / 3.0;
+        y += (sin(z * 0.2 / SCALE + uTime * 1.8) + sin(z * 1.8 / SCALE + uTime * 1.8) + sin(z * 2.8 / SCALE + uTime * 0.8)) / 3.0;
+        return y;
+    }
+    
+    void main() {
+        float uTime = timeMsec / 1000.0;
+        vUv = uv;
+        vec3 pos = position;
+    
+        float strength = 1.0;
+        pos.z += strength * calculateSurface(pos.x, pos.y);
+        pos.z -= strength * calculateSurface(0.0, 0.0);
+    
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+    }  
+    `,
+      fragmentShader: `
+    varying vec2 vUv;
+    
+    uniform sampler2D uMap;
+    
+    uniform vec3 color;
+    
+    uniform float timeMsec; 
+    
+    void main() {
+        float uTime = timeMsec / 1000.0;     
+        vec2 uv = vUv * 10.0 + vec2(uTime * -0.05);
+    
+        uv.y += 0.01 * (sin(uv.x * 3.5 + uTime * 0.35) + sin(uv.x * 4.8 + uTime * 1.05) + sin(uv.x * 7.3 + uTime * 0.45)) / 3.0;
+        uv.x += 0.12 * (sin(uv.y * 4.0 + uTime * 0.5) + sin(uv.y * 6.8 + uTime * 0.75) + sin(uv.y * 11.3 + uTime * 0.2)) / 3.0;
+        uv.y += 0.12 * (sin(uv.x * 4.2 + uTime * 0.64) + sin(uv.x * 6.3 + uTime * 1.65) + sin(uv.x * 8.2 + uTime * 0.45)) / 3.0;
+    
+        vec4 tex1 = texture2D(uMap, uv * 1.0);
+        vec4 tex2 = texture2D(uMap, uv * 1.0 + vec2(0.2));
+    
+        vec3 blue = color;
+    
+        gl_FragColor = vec4(blue + vec3(tex1.a * 0.9 - tex2.a * 0.02), 1.0);
+    
+    }`
+    });</script>
+  </head>  
+  <body>
+    <a-scene background="color: #000" style="position:absolute;">
+        <a-plane color="#2ECC71" segments-width="100" segments-height="100" width="100" height="100" repeat="100" position="0 1 0" rotation="-90 0 0"></a-plane>
+      	<a-entity light="type: directional; color: #ffffff; intensity: 2.8; castShadow:true;" position="0 2 -10"></a-entity>
+        <a-box position="0 2 0" material="shader:makewaves; uMap: https://i.imgur.com/hIlzcZO.png; repeat: 15 15;"></a-box>
+        <a-plane rotation="0 90 0" position="0 2 2" material="shader:makewaves; uMap: https://i.imgur.com/hIlzcZO.png; color: #201AEE; repeat: 2 2;"></a-plane>
+        <a-sphere position="2 2 0" material="shader:makewaves; uMap: https://i.imgur.com/z6AivWa.png; color: #1AE8EE; repeat: 15 15;"></a-box>
+	</a-scene>
+  </body>
+</html>
